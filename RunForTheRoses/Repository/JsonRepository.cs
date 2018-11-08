@@ -1,13 +1,14 @@
-﻿using Newtonsoft.Json;
-using System.IO;
+﻿using System.IO;
+using Newtonsoft.Json;
+using RunForTheRoses.Models;
 
-namespace RunForTheRoses
+namespace RunForTheRoses.Repository
 {
 
     //The JsonSaver class saves the horse bet as a Json array if the user chooses to set their answer as a Json value.
-    class JsonSaver : Saver<HorseBet>
+    class JsonRepository : Repository<HorseBet>
     {
-        public JsonSaver(string path) : base(path)
+        public JsonRepository(string path) : base(path + ".json")
         {
         }
 
@@ -21,6 +22,9 @@ namespace RunForTheRoses
         //deserializes json
         public override HorseBet Load()
         {
+            if (!FileExists())
+                return null;
+
             var text = File.ReadAllText(Path);
             return JsonConvert.DeserializeObject<HorseBet>(text);
         }
