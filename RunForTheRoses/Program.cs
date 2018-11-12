@@ -37,7 +37,8 @@ namespace RunForTheRoses
             var runForTheRoses = RunForTheRosesRepo.LoadRosesResults("./2016RunForTheRosesResults.json"); //returns a list
 
             //2a. writes the running horse of the derby to the console in shuffled order
-            RunForTheRosesRepo.Print(runForTheRoses);
+            var shuffled = RunForTheRosesRepo.Shuffle(runForTheRoses);
+            RunForTheRosesRepo.Print(shuffled);
 
             //3 User enters name to place their bet
             Console.WriteLine("Please enter your name to place a bet.");
